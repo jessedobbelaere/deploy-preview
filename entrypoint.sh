@@ -24,12 +24,19 @@ if [ ! -z "$OKTETO_CA_CERT" ]; then
    update-ca-certificates
 fi
 
+echo "----------------------------"
+echo "Event name: $GITHUB_EVENT_NAME"
+printenv
+echo "----------------------------"
+
+
 if [ -z $GITHUB_REF ]; then
 echo "fail to detect branch name"
 exit 1
 fi
 
 repository=$GITHUB_REPOSITORY
+
 
 if [ "${GITHUB_EVENT_NAME}" = "pull_request" ]; then
   branch=${GITHUB_HEAD_REF}
